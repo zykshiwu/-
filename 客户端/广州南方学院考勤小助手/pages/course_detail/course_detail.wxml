@@ -1,0 +1,127 @@
+<view>
+    <view class="page__bd">
+      <view class="weui-cells weui-cells_after-title">
+          <navigator aria-labelledby="js_cell_itl1_hd js_cell_itl1_bd js_cell_itl1_ft" url="/pages/class_people_number/class_people_number?course_name={{course_name}}&teacher_name={{teacher_name}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd" aria-hidden="true" id="js_cell_itl1_hd">
+                  <image  src="/pages/images/班级.png"></image>
+              </view>
+              <view class="weui-cell__bd" aria-hidden="true" id="js_cell_itl1_bd">班级成员</view>
+              <view aria-hidden="true" id="js_cell_itl1_ft" class="weui-cell__ft weui-cell__ft_in-access">人数</view>
+          </navigator>
+          <navigator aria-labelledby="js_cell_itl2_hd js_cell_itl2_bd js_cell_itl2_ft" url="/pages/study_record/study_record?course_name={{course_name}}" class="weui-cell weui-cell_example weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd" aria-hidden="true" id="js_cell_itl2_hd">
+                  <image  src="/pages/images/记录.png"></image>
+              </view>
+              <view class="weui-cell__bd" aria-hidden="true" id="js_cell_itl2_bd">学习记录</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true" id="js_cell_itl2_ft">签到统计</view>
+          </navigator>
+      </view>
+
+    <!-- 签到列表 -->
+        <view class="weui-cells weui-cells_after-title">
+
+            <navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="/pages/checkin_detail/checkin_detail?checkin_name={{item.checkin_name}}&course_name={{course_name}}&teacher_id={{item.teacher_id}}" wx:for="{{checkin}}" wx:key="code" bindtap="student_click_checkin" data-name="{{item.checkin_name}}" capture-catch:longpress="delete_checkin">
+							<view aria-hidden="true" id="t1" class="weui-cell__hd">
+                <image  style="width: 25px;height: 25px;"  src="{{item.checkin_switch=='F' ? '/pages/images/签到1.png':'/pages/images/签到.png'}}" alt></image>
+              </view>
+							<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary" style="font-size: 15px;">
+								<view style="color: {{item.checkin_switch=='F' ? 'grey':''}};">{{item.checkin_name}}</view>
+							</view>
+              <view class="weui-cell__desc">
+                {{item.year_time}}
+                <view class="weui-cell__desc"> {{item.hour_time}}</view>
+              </view>
+						</navigator>
+        </view>
+
+        <view class="weui-form__tips-area" style="margin-top: 30px;">
+        <view class="weui-form__tips">
+          我也是有底线的~
+        </view>
+      </view>
+
+
+
+    <!-- 签到按钮 -->
+    <!-- 记得改样式 -->
+    <view aria-hidden="{{dialog4? true : false}}" class="page__bd page__bd_spacing" style="position: fixed;bottom: 80px;width: 100%;" wx:if="{{userinfo.pro=='教师'}}">
+        <view aria-role="button" class="weui-btn weui-btn_default" style="height: 70px;width: 70px;border-radius:50%;font-size: 10px;border: 1px solid;position: relative;left: 124.9px;bottom: 1px;" bindtap="open4">添加学生</view>
+    </view>
+
+    <view aria-hidden="{{dialog3? true : false}}" class="page__bd page__bd_spacing" style="position: fixed;bottom: 0;width: 100%;" wx:if="{{userinfo.pro=='教师'}}">
+        <view aria-role="button" class="weui-btn weui-btn_default" style="height: 70px;width: 70px;border-radius:50%;font-size: 10px;border: 1px solid;position: relative;left: 124.9px;bottom: 1px;" bindtap="open3">发布签到</view>
+    </view>
+
+      <view wx:if="{{dialog3}}" aria-role="dialog" aria-modal="true">
+        <view class="weui-mask weui-transition {{dialog3 ? 'weui-transition_show' : ''}}" bindtap="close" aria-role="button" aria-label="关闭"></view>
+        <view class="weui-half-screen-dialog weui-transition {{dialog3 ? 'weui-transition_show' : ''}} {{wrap1 ? 'weui-half-screen-dialog_btn-wrap' : ''}}">
+            <view class="weui-half-screen-dialog__hd">
+                <view class="weui-half-screen-dialog__hd__side" bindtap="close">
+                    <view aria-role="button" class="weui-btn_icon">关闭<i class="weui-icon-close-thin"></i></view>
+                </view>
+                <view class="weui-half-screen-dialog__hd__main">
+                    <strong class="weui-half-screen-dialog__title">新建签到</strong>
+                </view>
+            </view>
+            <view class="weui-half-screen-dialog__bd" style="padding-top: 32px; height: 50px;">
+              <view class="weui-cells__title">签到名</view>
+              <view class="weui-cells weui-cells_after-title">
+                  <view class="weui-cell weui-cell_active">
+                      <view class="weui-cell__bd">
+                          <input class="weui-input" placeholder-class="weui-input__placeholder" bindinput="getCheckinName" placeholder="请输入签到名(限制10个字)" />
+                      </view>
+                  </view>
+              </view>
+            </view>
+            <view class="weui-half-screen-dialog__ft">
+              <view class="weui-half-screen-dialog__btn-area">
+                <view aria-role="button" class="weui-btn weui-btn_default" bindtap="close" id="js_btn2_1">取消</view>
+                <view aria-role="button" class="weui-btn weui-btn_primary" id="js_btn2_2" bindtap="click_summit">提交</view>
+              </view>
+            </view>
+        </view>
+    </view>
+
+
+    <!-- dialog4 -->
+    <view wx:if="{{dialog4}}" aria-role="dialog" aria-modal="true">
+        <view class="weui-mask weui-transition {{dialog4 ? 'weui-transition_show' : ''}}" bindtap="close4" aria-role="button" aria-label="关闭"></view>
+        <view class="weui-half-screen-dialog weui-transition {{dialog4 ? 'weui-transition_show' : ''}} {{wrap1 ? 'weui-half-screen-dialog_btn-wrap' : ''}}">
+            <view class="weui-half-screen-dialog__hd">
+                <view class="weui-half-screen-dialog__hd__side" bindtap="close4">
+                    <view aria-role="button" class="weui-btn_icon">关闭<i class="weui-icon-close-thin"></i></view>
+                </view>
+                <view class="weui-half-screen-dialog__hd__main">
+                    <strong class="weui-half-screen-dialog__title">添加学生</strong>
+                </view>
+            </view>
+            <view class="weui-half-screen-dialog__bd" style="padding-top: 32px; height: 50px;">
+              <view class="weui-cells__title">学号</view>
+              <view class="weui-cells weui-cells_after-title">
+                  <view class="weui-cell weui-cell_active">
+                      <view class="weui-cell__bd">
+                          <input class="weui-input" placeholder-class="weui-input__placeholder" bindinput="getStudentid" placeholder="请输入学号" />
+                      </view>
+                  </view>
+              </view>
+
+              <view class="weui-cells__title">姓名</view>
+              <view class="weui-cells weui-cells_after-title">
+                  <view class="weui-cell weui-cell_active">
+                      <view class="weui-cell__bd">
+                          <input class="weui-input" placeholder-class="weui-input__placeholder" bindinput="getStudentName" placeholder="请输入姓名" />
+                      </view>
+                  </view>
+              </view>
+            </view>
+            <view class="weui-half-screen-dialog__ft">
+              <view class="weui-half-screen-dialog__btn-area">
+                <view aria-role="button" class="weui-btn weui-btn_default" bindtap="close4" id="js_btn2_1">取消</view>
+                <view aria-role="button" class="weui-btn weui-btn_primary" id="js_btn2_2" bindtap="add_studnet_summit">提交</view>
+              </view>
+            </view>
+        </view>
+    </view>
+
+    </view>
+</view>

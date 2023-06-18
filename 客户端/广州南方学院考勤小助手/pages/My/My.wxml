@@ -1,0 +1,112 @@
+<!--pages/My/My.wxml-->
+<page-meta root-font-size="system"/>
+<view>
+  <view class="page__bd" wx:if="{{user}}">
+
+  <!-- 学生 -->
+    <view class="weui-cells demo_badge_cells" wx:if="{{user.pro=='学生'}}">
+      <view aria-labelledby="b1_txt1" aria-describedby="b1_n1" class="weui-cell weui-cell_active" aria-role="option">
+        <view class="weui-cell__hd" aria-hidden="true">
+          <image src="/pages/images/学生.png" alt></image>
+        </view>
+        <view class="weui-cell__bd" aria-hidden="true" id="b1_txt1">
+          <text>{{user.student_name}}同学</text>
+          <view class="demo_badge_desc">{{user.student_id}}</view>
+        </view>
+        <view class="weui-cell__bd" aria-hidden="true" id="b1_txt1">
+          <text bindtap="loginout" style="color: red;">退出登录</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 老师 -->
+    <view class="weui-cells demo_badge_cells" wx:else="{{user.pro=='教师'}}">
+      <view aria-labelledby="b1_txt1" aria-describedby="b1_n1" class="weui-cell weui-cell_active" aria-role="option">
+        <view class="weui-cell__hd" aria-hidden="true">
+          <image src="../images/教师.png" alt></image>
+        </view>
+        <view class="weui-cell__bd" aria-hidden="true" id="b1_txt1">
+          <text>{{user.teacher_name}}老师</text>
+          <view class="demo_badge_desc">{{user.teacher_id}}</view>
+        </view>
+        <view class="weui-cell__bd" aria-hidden="true" id="b1_txt1">
+          <text bindtap="loginout" style="color: red;">退出登录</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="page__bd" wx:else>
+    <view class="weui-cells demo_badge_cells">
+      <view aria-labelledby="b1_txt1" aria-describedby="b1_n1" class="weui-cell weui-cell_active" aria-role="option">
+        <view class="weui-cell__hd" aria-hidden="true">
+          <image src="/pages/images/用户.png" alt></image>
+        </view>
+        <view class="weui-cell__bd" aria-hidden="true" id="b1_txt1">
+          <text bindtap="login">点击登录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view  wx:if="{{user}}">
+  <view class="page__hd">
+		<view class="page__desc" style="background-color:#EDEDED;">学习</view>
+	</view>
+  <view class="weui-grids">
+    <navigator class="weui-grid" aria-role="button" url="/pages/userinfo/userinfo">
+      <view class="weui-grid__icon">
+        <image class="weui-grid__icon" src="../images/个人信息.png" alt></image>
+      </view>
+      <view class="weui-grid__label">个人信息</view>
+    </navigator>
+    <navigator class="weui-grid" aria-role="button"  url="/pages/myCourse/myCourse">
+      <view class="weui-grid__icon">
+        <image class="weui-grid__icon" src="../images/课程.png" alt></image>
+      </view>
+      <view class="weui-grid__label">我的课程</view>
+    </navigator>
+    <navigator class="weui-grid" aria-role="button" url="/pages/ask_for_leave/ask_for_leave">
+      <view class="weui-grid__icon">
+        <image class="weui-grid__icon" src="../images/请假.png" alt></image>
+      </view>
+      <view class="weui-grid__label">请(审)假</view>
+    </navigator>
+  </view>
+  <view class="page__hd">
+		<view class="page__desc" style="background-color:#EDEDED;">交互</view>
+	  </view>
+    <navigator class="weui-grid" aria-role="button" url="/pages/contact_us/contact_us">
+      <view class="weui-grid__icon">
+        <image class="weui-grid__icon" src="../images/问题反馈.png" alt></image>
+      </view>
+      <view class="weui-grid__label">问题反馈</view>
+    </navigator>
+    <navigator class="weui-grid" aria-role="button" url="/pages/about/about">
+      <view class="weui-grid__icon">
+        <image class="weui-grid__icon" src="../images/关于.png" alt></image>
+      </view>
+      <view class="weui-grid__label">关于</view>
+    </navigator>
+</view>
+
+<!-- 学院简介 -->
+<view  wx:else>
+  <view class="page">
+    <view class="weui-article">
+      <view class="weui-article__section">
+        <view class="weui-article__h2">广州南方学院考勤小助手</view>
+        <view class="weui-article__section">
+          <view class="weui-article__p">
+            广州南方学院考勤小助手又称"南苑考勤小助手",该系统类似于超星学习通的考勤系统，目的为了减少教师和学生平时的教学负担
+          </view>
+          <view class="weui-article__p">
+            <image class="weui-article__img" src="/pages/images/学校.png" mode="aspectFit" style="width: 100%;height: 180px;" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

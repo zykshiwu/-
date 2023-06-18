@@ -1,0 +1,82 @@
+<!--pages/student_add_course/student_add_course.wxml-->
+<view class="page" style="background-color: #fafafa;">
+	<view class="page__bd" style="background-color: #fafafa;">
+		<view class="weui-panel weui-panel_access">
+			<view class="weui-panel__bd">
+				<navigator aria-labelledby="js_p1m1_bd" class="weui-media-box weui-media-box_appmsg" url="javascript:">
+					<view aria-hidden="true" class="weui-media-box__hd">
+						<image class="weui-media-box__thumb" src="../images/学生.png" alt style="border-radius: 50%;"></image>
+					</view>
+					<view aria-hidden="true" id="js_p1m1_bd" class="weui-media-box__bd">
+						<text class="weui-media-box__title">{{userinfo.student_name}}</text>
+						<view class="weui-media-box__desc">{{userinfo.student_id}}</view>
+					</view>
+				</navigator>
+			</view>
+      
+		</view>
+		
+    <!-- 搜索 -->
+    <view class="page">
+    <view class="page__bd">
+      <view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
+        <form class="weui-search-bar__form"
+        aria-role="combobox"
+        aria-haspopup="true"
+        aria-expanded="{{inputVal.length > 0 ? 'true' : 'false'}}"
+        aria-owns="searchResult"
+        >
+          <view class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input aria-controls="searchResult" type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping"
+
+            />
+            <view aria-role="button" aria-label="清除" class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput"></view>
+          </view>
+          <label class="weui-search-bar__label" bindtap="showInput">
+            <i class="weui-icon-search"></i>
+            <span class="weui-search-bar__text">搜索</span>
+          </label>
+        </form>
+        <view aria-role="button" class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
+      </view>
+    </view>
+  </view>
+
+
+
+		<view class="weui-panel" wx:for="{{course_list}}" wx:key="code">
+			<view class="weui-panel__hd">
+        课程
+        <navigator class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea" aria-role="button" style="position: absolute;right: 0px;font-size: 12px;" url="javascript:" bindtap="student_add_course" data-cn='{{item.course_name}}' data-id='{{item.teacher_id}}'>添加课程</navigator>
+      </view>
+			<view class="weui-panel__bd">
+				<view aria-labelledby="js_p4m1_title js_a11y_comma js_p4m1_desc" aria-describedby="js_p4m1_source js_a11y_comma js_p4m1_time js_a11y_comma js_p4m1_extra" class="weui-media-box weui-media-box_text" aria-role="link">
+					<text aria-hidden="true" class="weui-media-box__title" id="js_p4m1_title" >{{item.course_name}}</text>
+					<view class="weui-media-box__desc" aria-hidden="true" id="js_p4m1_desc">{{item.book_time}}</view>
+					<view class="weui-media-box__info" aria-hidden="true">
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_source">{{item.address}}</view>
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_time">{{item.time}}</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_extra">{{item.teacher_name}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+    <view class="weui-panel" wx:if="{{course_list==''}}" wx:key="code">
+			<view class="weui-panel__hd">
+        课程
+      </view>
+			<view class="weui-panel__bd">
+				<view class="icon-box" style="text-align: center;">
+          <text title="提示" aria-describedby="tip_2" class="weui-icon-info weui-icon_msg" aria-role="img"></text>
+          <view class="icon-box__ctn" aria-hidden="true">
+            <view class="icon-box__title">提示</view>
+            <view class="icon-box__desc" id="tip_2">暂无搜索的课程</view>
+          </view>
+        </view>
+			</view>
+		</view>
+	</view>
+</view>

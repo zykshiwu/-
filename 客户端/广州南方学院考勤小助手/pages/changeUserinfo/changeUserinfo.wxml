@@ -1,0 +1,110 @@
+<!--pages/changeUserinfo/changeUserinfo.wxml-->
+<view>
+  <view wx:if="{{userinfo.pro == '学生'}}">
+    <form bindsubmit="changeinfo">
+      <view class="weui-form">
+        <view class="weui-form__control-area">
+          <view class="weui-cells__group weui-cells__group_form">
+            <view class="weui-cells">
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">学号</label></view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder="10位数的学号" placeholder-class="weui-input__placeholder" value="{{userinfo.student_id}}" name="student_id"/>
+                </view>
+              </view>
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                  <label class="weui-label">姓名</label>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder-class="weui-input__placeholder" value="{{userinfo.student_name}}" placeholder="请输入姓名" name="student_name"/>
+                </view>
+              </view>
+
+              <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__hd">
+                  <label class="weui-label" style="width: 3em;">性别</label>
+                </view>
+                <view class="weui-cell__bd">
+                  <picker aria-role="combobox" bindchange="bindPicker3Change" range="{{array}}">
+                      <view class="weui-select">{{array[value]}}</view>
+                  </picker>
+                </view>
+              </view>
+              
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                  <label class="weui-label">班级</label>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" value="{{userinfo.class}}" type="number" placeholder-class="weui-input__placeholder" placeholder="请输入班级" name="class" />
+                </view> 
+              </view>
+
+            </view>
+          </view>
+        </view>
+        <view class="weui-form__opr-area">
+          <button class="weui-btn weui-btn_warn" form-type='submit'>保存</button>
+        </view>
+        <view class="weui-form__extra-area">
+          <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2022-2023 zyk</view>
+          </view>
+        </view>
+      </view>
+    </form>
+  </view>
+
+
+  <view wx:else="{{userinfo.pro == '教师'}}">
+    <form bindsubmit="changeinfo">
+      <view class="weui-form">
+        <view class="weui-form__control-area">
+          <view class="weui-cells__group weui-cells__group_form">
+            <view class="weui-cells">
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">教工号</label></view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder="10位数的教工号" placeholder-class="weui-input__placeholder" value="{{userinfo.teacher_id}}" name="teacher_id"/>
+                </view>
+              </view>
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                  <label class="weui-label">姓名</label>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder="填写真实姓名" placeholder-class="weui-input__placeholder" value="{{userinfo.teacher_name}}" name="teacher_name"/>
+                </view>
+              </view>
+
+
+              <view class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                <view class="weui-cell__hd">
+                  <label class="weui-label" style="width: 3em;">性别</label>
+                </view>
+                <view class="weui-cell__bd">
+                  <picker aria-role="combobox" bindchange="bindPicker3Change" range="{{array}}">
+                      <view class="weui-select">{{array[value]}}</view>
+                  </picker>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-form__opr-area">
+          <button class="weui-btn weui-btn_warn"  form-type='submit'>保存</button>
+        </view>
+        <view class="weui-form__extra-area">
+          <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2022-2023 zyk</view>
+          </view>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

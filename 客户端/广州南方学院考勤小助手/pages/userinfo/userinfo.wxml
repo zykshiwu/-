@@ -1,0 +1,101 @@
+<!--pages/usrinfo/userinfo.wxml-->
+<page-meta root-font-size="system"/>
+<view wx:if="{{userinfo.pro=='学生'}}">
+<!-- 学生 -->
+	<view class="page__bd">
+		<view class="weui-cells demo_badge_cells">
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+        <text class="weui-cell__bd" aria-hidden="true">
+          <text class="demo_badge_title" id="b3_n1">姓名</text>
+        </text>
+        <text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.student_name}}</text>
+      </view>
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">学号</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.student_id}}</text>
+			</view>
+
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">职位</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.pro}}</text>
+			</view>
+
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">性别</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.sex}}</text>
+			</view>
+
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">班级</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.class}}</text>
+			</view>
+
+      <view class="button-sp-area cell">
+      <navigator class="weui-btn weui-btn_warn" aria-role="button" url="/pages/changeUserinfo/changeUserinfo">修改
+      </navigator>
+		  </view>
+		</view>
+	</view>
+
+  <view class="weui-form__extra-area">
+        <view class="weui-footer">
+          <view class="weui-footer__text">Copyright © 2022-2023 zyk</view>
+        </view>
+  </view>
+</view>
+
+
+<view wx:else="{{userinfo.pro=='教师'}}">
+  <!-- 老师 -->
+  <view class="page__bd">
+		<view class="weui-cells demo_badge_cells">
+			<view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">姓名</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.teacher_name}}</text>
+			</view>
+
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">教工号</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.teacher_id}}</text>
+			</view>
+
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">职位</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.pro}}</text>
+			</view>
+
+      <view aria-labelledby="b3_n1 b3_n2" aria-describedby="b3_txt1 b3_txt1_note" class="weui-cell weui-cell_active weui-cell_access" aria-role="link">
+				<text class="weui-cell__bd" aria-hidden="true">
+					<text class="demo_badge_title" id="b3_n1">性别</text>
+				</text>
+				<text class="weui-cell__ft" aria-hidden="true" id="b3_n2">{{userinfo.sex}}</text>
+			</view>
+
+      <view class="button-sp-area cell">
+      <navigator class="weui-btn weui-btn_warn" aria-role="button" url="/pages/changeUserinfo/changeUserinfo">修改
+      </navigator>
+		  </view>
+		</view>
+	</view>
+
+  <view class="weui-form__extra-area">
+    <view class="weui-footer">
+      <view class="weui-footer__text">Copyright © 2022-2023 zyk</view>
+    </view>
+  </view>
+
+</view>

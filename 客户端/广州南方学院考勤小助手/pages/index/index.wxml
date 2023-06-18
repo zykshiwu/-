@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view>
+<!-- 轮播图 -->
+  <view style="width:100%;height: 100%;">
+    <swiper indicator-dots circular interval="2000" duration="1000" autoplay="true">
+      <block wx:for="{{luboImage}}" wx:key="code">
+        <swiper-item>
+          <image mode="aspectFill" src="{{item.src}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 书籍 -->
+  <view class="weui-cells__title" style="font-size: 20px;color: black;">书籍</view>
+  <view class="page">
+    <view class="page__bd page__bd_spacing" style="display:center;">
+      <view class="weui-flex">
+        <view class="weui-flex__item"><view class="placeholder" style="height: 100px;"><image style="width: 100%;height: 100%;" src="/pages/images/qk2.png"></image></view></view>
+			  <view class="weui-flex__item"><view class="placeholder" style="height: 100px;"><image style="width: 100%;height: 100%;" src="/pages/images/qk6.png"></image></view></view>
+        <view class="weui-flex__item"><view class="placeholder" style="height: 100px;"><image style="width: 100%;height: 100%;" src="/pages/images/qk7.png"></image></view></view>
+      </view>
+      <view class="weui-flex">
+        <view class="weui-flex__item"><view class="placeholder" style="height: 100px;"><image style="width: 100%;height: 100%;" src="/pages/images/qk9.png"></image></view></view>
+			  <view class="weui-flex__item"><view class="placeholder" style="height: 100px;"><image style="width: 100%;height: 100%;" src="/pages/images/qk10.png"></image></view></view>
+        <view class="weui-flex__item"><view class="placeholder" style="height: 100px;"><image style="width: 100%;height: 100%;" src="/pages/images/qk19.png"></image></view></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 校园新闻 -->
+  <view class="weui-cells__title" style="font-size: 20px;color: black;">校园新闻</view>
+  <view class="page">
+    <view class="weui-panel weui-panel_access">
+		
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_text" aria-role="option">
+					<text class="weui-media-box__title">提升实践能力 筑牢安全防线——我校开展火灾应急处置实操演练</text>
+					<view class="weui-media-box__desc">2月19日下午，学校保卫处联合物业公司及驻校经营单位，组织开展了火灾应急处置实操演练活动。</view>
+				</view>
+				<view class="weui-media-box weui-media-box_text" aria-role="option">
+					<text class="weui-media-box__title">蓝图绘就风正劲 扬帆破浪奋进时——我校马克思主义学院课程展示周系列比赛圆满落幕</text>
+					<view class="weui-media-box__desc">12月12日至16日，马克思主义学院顺利举办课程展示周系列比赛。本期课程展示系列比赛包括《思想道德与法治》、《习近平新时代中国特色社会主义思想》、《马克思主义基本原理概论》、《毛泽东思想和中国特色社会主义理论体系概论》、《中国近现代史纲要》、《毛泽东思想和中国特色社会主义理论体系概论（实践）》、《形势与政策》等七门课程。</view>
+				</view>
+        <view class="weui-media-box weui-media-box_text" aria-role="option">
+					<text class="weui-media-box__title">功不唐捐，百花竞放</text>
+					<view class="weui-media-box__desc">为了学生的成长与发展，政商研究院打造了专门培养应用型、复合型人才的平台，促进学生在各行各业成为中流砥柱。</view>
+				</view>
+			</view>
+			<view class="weui-panel__ft">
+				<navigator class="weui-cell weui-cell_active weui-cell_access weui-cell_link" url="javascript:">
+					<text class="weui-cell__bd">查看更多</text>
+					<text class="weui-cell__ft"></text>
+				</navigator>
+			</view>
+		</view>
+  </view>
+</view>

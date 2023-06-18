@@ -1,0 +1,83 @@
+<!--pages/myCourse/myCourse.wxml-->
+<!-- 记得修改样式 -->
+<!-- 学生 -->
+<view class="page__bd" wx:if="{{userinfo.pro=='学生'}}">
+		<view class="weui-panel weui-panel_access">
+			<view class="weui-panel__hd">{{userinfo.student_name}}的课程表
+        <image style="position: absolute;right: 1px;top:10px;width: 60px;height: 60px;border: none;" src="/pages/images/nf_icon_1.png"></image>
+        <view class="weui-media-box__info" aria-hidden="true">
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_source">{{userinfo.student_id}}</view>
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_time">{{userinfo.pro}}</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_extra">{{userinfo.class}}</view>
+			  </view>
+      </view>
+      <view class="weui-panel__ft">
+        <navigator class="weui-cell weui-cell_active weui-cell_access weui-cell_link" url="/pages/student_add_course/student_add_course">
+          <text class="weui-cell__bd">课程大厅</text>
+          <text class="weui-cell__ft"></text>
+        </navigator>
+			</view>
+			<view class="weui-panel__bd" style="background-color: #fafafa;">
+        <navigator aria-labelledby="js_p1m2_bd" class="weui-media-box weui-media-box_appmsg" url="/pages/course_detail/course_detail?course_name={{item.course_name}}&teacher_name={{item.teacher_name}}" style="margin-bottom: 15px;" wx:for="{{student_course}}" wx:key="code">
+          <view aria-hidden="true" class="weui-media-box__hd">
+            <image class="weui-media-box__thumb" src="/pages/images/课本.png" alt></image>
+          </view>
+          <view aria-hidden="true" id="js_p1m2_bd" class="weui-media-box__bd">
+            <text class="weui-media-box__title">{{item.course_name}}</text>
+            <view class="weui-media-box__desc">{{item.teacher_name}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__desc" aria-hidden="true" id="js_p4m1_time">{{item.address}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__desc" aria-hidden="true" id="js_p4m1_extra">| {{item.time}} |</view>
+            <view class="weui-media-box__info__meta weui-media-box__desc" aria-hidden="true" id="js_p4m1_extra">{{item.jx}}</view>
+          </view>
+        </navigator>
+			</view>
+      <view class="weui-form__tips-area">
+        <view class="weui-form__tips">
+          没有更多了
+        </view>
+      </view>
+		</view>
+</view>
+
+<!-- 老师 -->
+<view class="page__bd" wx:else="{{userinfo.pro=='教师'}}">
+		<view class="weui-panel weui-panel_access">
+			<view class="weui-panel__hd">{{userinfo.teacher_name}}创建的课程
+        <image style="position: absolute;right: 1px;top:10px;width: 60px;height: 60px;border: none;" src="/pages/images/nf_icon_1.png"></image>
+        <view class="weui-media-box__info" aria-hidden="true">
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_time">{{userinfo.teacher_id}}</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_extra">{{userinfo.pro}}</view>
+			</view>
+      </view>
+			<view class="weui-panel__bd" style="background-color: #fafafa;">
+        <navigator aria-labelledby="js_p1m2_bd" class="weui-media-box weui-media-box_appmsg" url="/pages/course_detail/course_detail?course_name={{item.course_name}}&teacher_name={{item.teacher_name}}" style="margin-bottom: 15px;"wx:for="{{course}}" wx:key="code" capture-catch:longpress="delete_course" data-course_name="{{item.course_name}}">
+          <view aria-hidden="true" class="weui-media-box__hd">
+            <image class="weui-media-box__thumb" src="/pages/images/课本.png" alt></image>
+          </view>
+          <view aria-hidden="true" id="js_p1m2_bd" class="weui-media-box__bd">
+            <text class="weui-media-box__title">{{item.course_name}}</text>
+            <view class="weui-media-box__desc">{{item.teacher_name}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__desc" aria-hidden="true" id="js_p4m1_time">{{item.address}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__desc" aria-hidden="true" id="js_p4m1_extra">| {{item.time}} |</view>
+            <view class="weui-media-box__info__meta weui-media-box__desc" aria-hidden="true" id="js_p4m1_extra">{{item.jx}}</view>
+          </view>
+        </navigator>
+			</view>
+
+      <view class="weui-form__tips-area" style="margin-top: 20px;">
+        <view class="weui-form__tips">
+          没有更多了
+        </view>
+      </view>
+
+		</view>
+
+
+    <!-- 按钮 -->
+    <navigator class="weui-btn_cell weui-btn_cell-primary" clss="btn" aria-role="button" url="/pages/addCourse/addCourse" style="position: fixed;bottom: 0;width: 100%;">
+		  <image alt="icon" class="weui-btn_cell__icon" src="/pages/images/创建课程.png"></image>新建课程
+		</navigator>
+		
+</view>
+
+

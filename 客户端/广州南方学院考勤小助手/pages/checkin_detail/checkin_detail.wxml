@@ -1,0 +1,135 @@
+<!--pages/checkin_detail/checkin_detail.wxml-->
+<view wx:if="{{userinfo.pro=='教师'}}">
+  <view class="weui-cells weui-cells_radio weui-cells_after-title">
+      <radio-group bindchange="radioChange" class="weui-flex__item">
+          <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
+              <view class="weui-cell__bd">{{item.name}}</view>
+
+              <view class="weui-cell__ft">
+                  <radio
+                      class="weui-check"
+                      value="{{item.value}}"
+                      checked="{{item.checked}}"
+                  />
+                  <i class="weui-icon-checked"></i>
+              </view>
+          </label>
+      </radio-group>
+  </view>
+  <navigator class="weui-btn_cell weui-btn_cell-warn" aria-role="button" style="background-color: rgb(248, 248, 248);" url="javascript:" bindtap="close_checkin">关闭签到</navigator>
+  <view wx:if="{{radioItems_value=='0'}}">
+    <view class="weui-cells__title">已签到人员名单</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_example " aria-role="option" wx:for="{{ready_checkin}}" wx:key="code" bindtap="open_dialog" data-student_name="{{item.student_name}}" data-student_id="{{item.student_id}}">
+                <view class="weui-cell__hd">
+                    <image src="/pages/images/学生(1).png"></image>
+                </view>
+                <view class="weui-cell__bd">{{item.student_name}}<view class="weui-cell__desc">{{item.student_id}}</view></view>
+                <view class="weui-cell__ft" style="font-size: 14px;">{{item.year_time}}<view class="weui-cell__desc">{{item.hour_time}}</view></view>
+          </view>
+        </view>
+
+
+        <view class="icon-box" style="text-align: center;" wx:if="{{ready_checkin==''}}">
+            <text title="提示" aria-describedby="tip_2" class="weui-icon-waiting weui-icon_msg" aria-role="img"></text>
+            <view class="icon-box__ctn" aria-hidden="true">
+              <view class="icon-box__title">无任何学生签到</view>
+            </view>
+        </view>
+  </view>
+
+  <view wx:if="{{radioItems_value=='1'}}">
+    <view class="weui-cells__title">未签到人员名单</view>
+      <view class="weui-cell weui-cell_example " aria-role="option" wx:for="{{no_checkin}}" wx:key="code" bindtap="open_dialog" data-student_name="{{item.student_name}}" data-student_id="{{item.student_id}}">
+        <view class="weui-cell__hd">
+          <image src="/pages/images/学生(1).png"></image>
+        </view>
+        <view class="weui-cell__bd">{{item.student_name}}<view class="weui-cell__desc">{{item.student_id}}</view></view>
+      </view>
+
+
+      <view class="icon-box" style="text-align: center;" wx:if="{{no_checkin==''}}">
+          <text title="提示" aria-describedby="tip_2" class="weui-icon-waiting weui-icon_msg" aria-role="img"></text>
+          <view class="icon-box__ctn" aria-hidden="true">
+            <view class="icon-box__title">无任何学生未签</view>
+      </view>
+      </view>
+  </view>
+
+
+  <view wx:if="{{radioItems_value=='2'}}">
+    <view class="weui-cells__title">请假人员名单</view>
+      <view class="weui-cell weui-cell_example " aria-role="option" wx:for="{{askforleave_checkin}}" wx:key="code" bindtap="open_dialog" data-student_name="{{item.student_name}}" data-student_id="{{item.student_id}}">
+        <view class="weui-cell__hd">
+          <image src="/pages/images/学生(1).png"></image>
+        </view>
+        <view class="weui-cell__bd">{{item.student_name}}<view class="weui-cell__desc">{{item.student_id}}</view></view>
+      </view>
+
+
+      <view class="icon-box" style="text-align: center;" wx:if="{{askforleave_checkin==''}}">
+          <text title="提示" aria-describedby="tip_2" class="weui-icon-waiting weui-icon_msg" aria-role="img"></text>
+          <view class="icon-box__ctn" aria-hidden="true">
+            <view class="icon-box__title">无任何学生请假</view>
+      </view>
+      </view>
+  </view>
+
+<!-- 老师修改学生签到状态的样式 -->
+  <view class="page">
+      <view wx:if="{{show_change_student_status_Dialog}}" aria-role="dialog" aria-modal="true" aria-labelledby="js_dialog_title" class="fadeIn" bindtap="close">
+        <view class="weui-mask" aria-role="button" aria-label="关闭" bindtap="close"></view>
+        <view class="weui-actionsheet weui-actionsheet_toggle">
+            <view class="weui-actionsheet__title">
+                <view class="weui-actionsheet__title-text" id="js_dialog_title" style="font-size: 15px;">修改{{getStudent_name}}同学的签到状态</view>
+            </view>
+            <view class="weui-actionsheet__menu">
+                <view aria-role="button" class="weui-actionsheet__cell" data-status_msg="已签" bindtap="get_change_status">已签</view>
+                <view aria-role="button" class="weui-actionsheet__cell weui-actionsheet__cell_warn" data-status_msg="未签" bindtap="get_change_status">未签</view>
+                <view aria-role="button" class="weui-actionsheet__cell weui-actionsheet__cell" data-status_msg="请假" bindtap="get_change_status">请假</view>
+            </view>
+            <view class="weui-actionsheet__action">
+                <view aria-role="button" class="weui-actionsheet__cell">取消</view>
+            </view>
+        </view>
+    </view>
+  </view>
+<!-- 老师修改学生签到状态的样式 -->
+
+</view>
+
+
+<!-- 学生 -->
+<view class="student" wx:if="{{userinfo.pro=='学生'}}">
+  <!-- 签到成功 -->
+  <view class="page" wx:if="{{student_checkin_time.checkin_status=='已签'}}">
+    <view class="weui-msg">
+      <view class="weui-msg__icon-area"><text class="weui-icon-success weui-icon_msg"></text></view>
+      <view class="weui-msg__text-area"> 
+        <view class="weui-msg__title">签到成功</view>
+        <view class="weui-msg__tips">{{student_checkin_time.year_time}}</view>
+        <view class="weui-msg__tips">{{student_checkin_time.hour_time}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 请假 -->
+  <view class="page" wx:if="{{student_checkin_time.checkin_status=='请假'}}">
+    <view class="weui-msg">
+      <view class="weui-msg__icon-area"><text class="weui-icon-warn weui-icon_msg-primary"></text></view>
+      <view class="weui-msg__text-area">
+        <view class="weui-msg__title">签到失败</view>
+        <view class="weui-msg__title">本次签到状态为请假</view>
+      </view>
+    </view>
+  </view>
+  <!-- 签到失败 -->
+  <view class="page" wx:if="{{student_checkin_time.checkin_status=='未签'}}">
+    <view class="weui-msg">
+      <view class="weui-msg__icon-area"><text class="weui-icon-warn weui-icon_msg"></text></view>
+      <view class="weui-msg__text-area">
+        <view class="weui-msg__title">签到失败,已过期</view>
+      </view>
+    </view>
+  </view>
+</view>
+

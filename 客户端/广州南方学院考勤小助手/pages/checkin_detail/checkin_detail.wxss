@@ -1,0 +1,5 @@
+/* pages/checkin_detail/checkin_detail.wxss */
+.weui-cell__hd{font-size:0}.weui-cell__hd image{margin-right:16px;vertical-align:middle;width:20px;height:20px}
+.placeholder{margin:5px;padding:0 10px;text-align:center;background-color:var(--weui-BG-1);height:2.3em;line-height:2.3em;color:var(--weui-FG-1)}
+
+.page{background-color:var(--weui-BG-2)}

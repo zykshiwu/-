@@ -1,0 +1,6 @@
+/* pages/myCourse/myCourse.wxss */
+
+.btn{
+  position: fixed;
+  bottom: 0;
+}

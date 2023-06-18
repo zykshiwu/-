@@ -1,0 +1,96 @@
+<view style="background-color: #ededed;" wx:if="{{userinfo.pro=='学生'}}">
+  <view class="page" style="border-radius: 5%;position: relative;top: 10px;" >
+    <view class="weui-grids">
+      <view class="weui-grid">
+        <view class="weui-grid__label">{{count_ready_checkin}}</view>
+        <view class="weui-grid__label">已签</view>
+      </view>
+
+      <view class="weui-grid">
+        <view class="weui-grid__label">{{count_no_checkin}}</view>
+        <view class="weui-grid__label">未签</view>
+      </view>
+
+      <view class="weui-grid">
+        <view class="weui-grid__label">{{count_askforleave}}</view>
+        <view class="weui-grid__label">请假</view>
+      </view>
+    </view>
+  </view>
+  <view class="page" style="border-radius: 5%;">
+    <view class="weui-steps weui-steps_vertical" >
+      <view class="weui-steps__item weui-steps__item_success" wx:for="{{count_student_checkin}}" wx:key="code">
+        <view class="weui-steps__item__inner" style="width: 100%;">
+          <text class="weui-steps__item__title">{{item.checkin_name}}</text>
+          <text class="weui-steps__item__desc" style="color: greenyellow;" wx:if="{{item.checkin_status=='已签'}}">{{item.checkin_status}}</text>
+          <text class="weui-steps__item__desc" style="color: red;" wx:if="{{item.checkin_status=='未签'}}">{{item.checkin_status}}</text>
+          <text class="weui-steps__item__desc" style="color: rgb(255, 255, 34);" wx:if="{{item.checkin_status=='请假'}}">{{item.checkin_status}}</text>
+          <text class="weui-steps__item__desc" wx:if="{{item.checkin_status=='已签'}}">{{item.year_time}} {{item.hour_time}}</text>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 学生没有签到记录样式 -->
+
+    <view class="icon-box" style="text-align: center;background-color: white;" wx:if="{{count_student_checkin==''}}">
+      <view class="weui-msg">
+        <view class="weui-msg__icon-area"><text class="weui-icon-info weui-icon_msg"></text></view>
+        <view class="weui-msg__text-area">
+          <view class="weui-msg__title" style="font-size: 16px;">没有创建过任何签到</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 老师 -->
+
+
+<view style="background-color: #ededed;" wx:if="{{userinfo.pro=='教师'}}">
+  <view class="page" style="border-radius: 5%;position: relative;top: 10px;" >
+    <view class="weui-grids" style="text-align: center;">
+      <text>{{count_teacher_checkin_num}}</text>
+      <view>已发布的签到</view>
+    </view>
+  </view>
+  <view class="page" style="border-radius: 5%;width: 100%;position: relative;top: 30px;">
+    <view class="weui-panel">
+			<view class="weui-panel__hd" style="font-size: 20px;">签到统计</view>
+			<view class="weui-panel__bd">
+				<view aria-labelledby="js_p4m1_title js_a11y_comma js_p4m1_desc" aria-describedby="js_p4m1_source js_a11y_comma js_p4m1_time js_a11y_comma js_p4m1_extra" class="weui-media-box weui-media-box_text" aria-role="link"  wx:for="{{count_teacher_checkin}}" wx:for-item="first_checkin_name"   wx:key="code">
+					<text aria-hidden="true" class="weui-media-box__title" id="js_p4m1_title" style="font-size: 18px;">{{first_checkin_name.checkin_name}}</text>
+          <view wx:for="{{student_checkin_num}}" wx:key="code">
+            <view class="weui-media-box__desc" aria-hidden="true" id="js_p4m1_desc"  wx:if="{{item.checkin_name_1==first_checkin_name.checkin_name}}">
+              <view style="font-size: 15px;color: greenyellow;" wx:if="{{item.checkin_status_1=='已签'}}">{{item.checkin_status_1}}人数:<text>{{item.count}}</text></view>
+              <view style="font-size: 15px;color: red;" wx:if="{{item.checkin_status_1=='未签'}}">
+              {{item.checkin_status_1}}人数:<text>{{item.count}}</text>
+              </view>
+              <view style="font-size: 15px;color: rgb(255, 255, 34);" wx:if="{{item.checkin_status_1=='请假'}}">
+              {{item.checkin_status_1}}人数:<text>{{item.count}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="weui-media-box__info" aria-hidden="true">
+            <view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_source">创建签到时间</view>
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_time">{{first_checkin_name.year_time}}</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_extra">{{first_checkin_name.hour_time}}</view>
+					</view>
+				</view>
+			</view>
+
+      <!-- 没有创建过签到时候的样式 -->
+      <view class="weui-panel__bd" wx:if="{{count_teacher_checkin==''}}">
+				<view class="icon-box" style="text-align: center;background-color: white;" >
+          <view class="weui-msg">
+            <view class="weui-msg__icon-area"><text class="weui-icon-info weui-icon_msg"></text></view>
+            <view class="weui-msg__text-area">
+              <view class="weui-msg__title" style="font-size: 16px;">没有创建过任何签到</view>
+            </view>
+          </view>
+        </view>
+			</view>
+
+		</view>
+  </view>
+</view>

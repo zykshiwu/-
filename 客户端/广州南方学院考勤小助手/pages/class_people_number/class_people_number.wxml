@@ -1,0 +1,41 @@
+<!-- pages/class_people_number/class_people_number.wxml -->
+<!-- 记得修改样式 -->
+<view>
+
+  <view class="page__hd">
+		<view class="page__desc" style="background-color:#EDEDED;color:gray;text-align: center;">教师</view>
+    <view class="weui-grids">
+      <navigator class="weui-grid" aria-role="button" url="javascript:">
+        <view class="weui-grid__icon">
+          <image src="/pages/images/老师.png" style="width: 25px;height: 25px;" alt></image>
+        </view>
+        <view class="weui-grid__label">{{teacher_name}}</view>
+      </navigator>
+    </view>
+  </view>
+
+
+
+	<view class="page__hd">
+		<view class="page__desc" style="background-color:#EDEDED;color:gray;text-align: center;">学生</view>
+	</view>
+	<view class="weui-grids">
+		<navigator class="weui-grid" aria-role="button" url="javascript:" wx:for="{{student_name_list}}" wx:key="code" capture-catch:longpress="delete_student" data-student_id="{{item.student_id}}" data-teacher_id="{{item.teacher_id}}" data-student_name="{{item.student_name}}">
+			<view class="weui-grid__icon">
+				<image src="/pages/images/学生(1).png" style="width: 25px;height: 25px;" alt></image>
+			</view>
+			<view class="weui-grid__label">{{item.student_name}}</view>
+		</navigator>
+    <view class="icon-box" style="text-align: center;" wx:if="{{student_name_list==''}}">
+			<text title="提示" aria-describedby="tip_2" class="weui-icon-info weui-icon_msg" aria-role="img"></text>
+			<view class="icon-box__ctn" aria-hidden="true">
+				<view class="icon-box__title">无任何学生</view>
+			</view>
+		</view>
+	</view>
+  <view class="page__desc" style="text-align: center;color:gray;margin-top: 30px;font-size: 15px;">已无更多</view>
+</view>
+
+
+
+

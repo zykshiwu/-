@@ -1,0 +1,66 @@
+<!--pages/addCourse/addCourse.wxml-->
+<!-- 记得加样式 -->
+<view>
+
+  <form bindsubmit="addcourse">
+      <view class="weui-form">
+        <view class="weui-form__control-area">
+          <view class="weui-cells__group weui-cells__group_form">
+            <view class="weui-cells">
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd"><label class="weui-label">课程名称</label></view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder="课程名称" placeholder-class="weui-input__placeholder"  name="course_name"/>
+                </view>
+              </view>
+
+              <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                  <label class="weui-label">上课地点</label>
+                </view>
+                <view class="weui-cell__bd">
+                  <input class="weui-input" placeholder-class="weui-input__placeholder"  placeholder="如:2实203" name="address"/>
+                </view>
+              </view>
+            </view>
+
+            <view class="weui-cells weui-cells_after-title">
+                
+              <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">上课节数</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker aria-role="combobox" id="js_area" bindchange="bindjxChange" value="{{jxIndex}}" range="{{jx}}">
+                            <view class="weui-select weui-select_in-select-after">{{jx[jxIndex]}}</view>
+                        </picker>
+                    </view>
+                </label>
+
+
+
+              <label for="js_area" class="weui-cell weui-cell_active weui-cell_select weui-cell_select-after">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">上课时间</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker aria-role="combobox" id="js_area" bindchange="bindtimeChange" value="{{timeIndex}}" range="{{time}}">
+                            <view class="weui-select weui-select_in-select-after">{{time[timeIndex]}}</view>
+                        </picker>
+                    </view>
+                </label>
+            </view>
+          </view>
+      </view>
+        <view class="weui-form__opr-area">
+          <button class="weui-btn weui-btn_warn" form-type='submit'>提交</button>
+        </view>
+      </view>
+    </form>
+  <view class="weui-form__extra-area">
+    <view class="weui-footer">
+      <view class="weui-footer__text">Copyright © 2022-2023 zyk</view>
+    </view>
+  </view>
+</view>
