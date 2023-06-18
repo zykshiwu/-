@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/My/My",
+    "pages/userinfo/userinfo",
+    "pages/myCourse/myCourse",
+    "pages/changeUserinfo/changeUserinfo",
+    "pages/course_detail/course_detail",
+    "pages/addCourse/addCourse",
+    "pages/class_people_number/class_people_number",
+    "pages/checkin_detail/checkin_detail",
+    "pages/contact_us/contact_us",
+    "pages/ask_for_leave/ask_for_leave",
+    "pages/student_askforleave_detail/student_askfroleave_detail",
+    "pages/about/about",
+    "pages/study_record/study_record",
+    "pages/student_add_course/student_add_course"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#7bbfea",
+    "navigationBarTitleText": "南院考勤小助手",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#EDEDED"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/images/首页.png",
+        "selectedIconPath": "pages/images/首页(1).png"
+      },
+      {
+        "pagePath": "pages/My/My",
+        "text": "我",
+        "iconPath": "pages/images/我的.png",
+        "selectedIconPath": "pages/images/我的(1).png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
